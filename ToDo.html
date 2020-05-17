@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>todo_js</title>
@@ -7,9 +8,22 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <div class = "container-fluid">
-            <h1> ToDo Tasks </h1>
+    <body style="padding-top: 2%;">
+        <div class = "container" style="background-color: aliceblue; padding-left: 8%;">
+            <h1 style="text-align: center;"> ToDo Tasks </h1>
+            <div class="row col-sm-5" style="background-color: antiquewhite; padding: 2%;">
+                <div class="form-group">
+					<label for="title">&nbsp;Task Title :</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                    <div>&nbsp;</div>
+					<label for="pwd">&nbsp;Task Description :</label>
+					<input type="text" class="form-control" id="desc" name="desc">
+				</div>				
+				<button  class="btn btn-primary" onclick="addTask()">Add Task</button>
+            </div>
+            <div class="row col-sm-2">&nbsp;</div>
+            <div class="row col-sm-5" style="background-color:beige;">Hello</div>
+
         </div>
     </body>
 </html>
