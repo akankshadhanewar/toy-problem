@@ -1,4 +1,5 @@
 var tasks = []
+
 function addTask(){
     t = document.getElementById("title").value
     d = document.getElementById("desc").value
@@ -10,6 +11,7 @@ function addTask(){
     tasks.push(task)
     displayTask()
 }
+
 function displayTask(){
     tbody_data = "";
     for(i=0;i<tasks.length;i++){
@@ -21,6 +23,7 @@ function displayTask(){
     }
     document.getElementById("tbody").innerHTML = tbody_data;
 }
+
 function Delete(task){
     tasks.splice(task,1)
     displayTask();
