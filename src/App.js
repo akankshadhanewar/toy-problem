@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Todo />
     </div>
   );
 }
+
+
+class Todo extends React.Component{
+  constructor() {
+  super();
+  }
+  render(){
+    return(
+      <div>
+        <h1>Todo List</h1>
+        <input type="text" placeholder="You task here"></input>&nbsp;
+        <input type="date"></input>&nbsp;
+        <button>Add task</button>
+      </div>
+    );
+  }
+}
+
+
 
 export default App;
