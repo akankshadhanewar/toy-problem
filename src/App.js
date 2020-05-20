@@ -9,31 +9,32 @@ function App() {
   );
 }
 
-
 class Todo extends React.Component{
   constructor(props) {
   super(props);
     this.state={
       tasklist:[],
       text:"",
-      date:""
+      date:"",
+      isToggleOn: true
     };
     this.addTask = this.addTask.bind(this);
     this.displayText=this.displayText.bind(this);
     this.displayDate=this.displayDate.bind(this);
     this.deleteTask=this.deleteTask.bind(this);
+    this.markTask=this.markTask.bind(this);
   }
 
   addTask(){
     var n = this.state.text
-    console.log(n)
     if(n.length === 0){
       alert("Task feild cannot be empty")
+      return;
     }
     var d = this.state.date
-    console.log(d)
     if(d.length === 0){
       alert("Date feild canot be empty")
+      return;
     }
     var dict={}
     dict["name"]=n;
@@ -60,19 +61,20 @@ class Todo extends React.Component{
   deleteTask(task){
     var newList = [...this.state.tasklist];
     var task_n = task.target.id;
-    var index;
+    var index=0;
     for(let i = 0; i<newList.length; i++){
-      if(newList[i].name === task_n){
+      if((newList[i].name) === task_n){
         index = i;
       }
-      else{
-        index = -1;
-      }
-      newList.splice(index,1);
-      this.setState({
-        tasklist:[...newList]
-      })
     }
+    newList.splice(index,1);
+    this.setState({
+      tasklist:[...newList]
+    })
+  }
+
+  markTask(task) {
+    this.setState({disabled:true});
   }
 
   render(){
@@ -80,15 +82,15 @@ class Todo extends React.Component{
       <div className="App-header">
         <h1>Todo List</h1>
         <input type="text" placeholder="Enter your task" onChange={this.displayText}></input>&nbsp;
-        <input type="date" onChange={this.displayDate}></input>&nbsp;
+        <input type="date" placeholder="Duedate" onChange={this.displayDate}></input>&nbsp;
         <button onClick={this.addTask}>Add task</button>
         <ul>
           {this.state.tasklist.map((value) => {
             return(
-              <div id = {value["name"]}>
+              <div>
               {value["name"]+" "+value["date"]}&nbsp;
-              <button onClick={this.deleteTask}>Delete</button>&nbsp;
-              <button>Mark</button>
+              <button onClick={this.deleteTask} id={value["name"]}>Delete</button>&nbsp;
+              <button onClick= {this.markTask} disabled={this.state.disabled} id={value["name"]}>Checked</button>
               </div>);
           })}
         </ul>
