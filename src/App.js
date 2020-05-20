@@ -3,8 +3,8 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Todo />
+    <div className = "App">
+      <Todo/>
     </div>
   );
 }
@@ -21,6 +21,7 @@ class Todo extends React.Component{
     this.addTask = this.addTask.bind(this);
     this.displayText=this.displayText.bind(this);
     this.displayDate=this.displayDate.bind(this);
+    this.deleteTask=this.deleteTask.bind(this);
   }
 
   addTask(){
@@ -56,6 +57,24 @@ class Todo extends React.Component{
     });
   }
   
+  deleteTask(task){
+    var newList = [...this.state.tasklist];
+    var task_n = task.target.id;
+    var index;
+    for(let i = 0; i<newList.length; i++){
+      if(newList[i].name === task_n){
+        index = i;
+      }
+      else{
+        index = -1;
+      }
+      newList.splice(index,1);
+      this.setState({
+        tasklist:[...newList]
+      })
+    }
+  }
+
   render(){
     return(
       <div className="App-header">
@@ -64,11 +83,11 @@ class Todo extends React.Component{
         <input type="date" onChange={this.displayDate}></input>&nbsp;
         <button onClick={this.addTask}>Add task</button>
         <ul>
-          {this.state.tasklist.map((value, index) => {
+          {this.state.tasklist.map((value) => {
             return(
-              <div id= {value["name"]}>
+              <div id = {value["name"]}>
               {value["name"]+" "+value["date"]}&nbsp;
-              <button>Delete</button>&nbsp;
+              <button onClick={this.deleteTask}>Delete</button>&nbsp;
               <button>Mark</button>
               </div>);
           })}
